@@ -1,4 +1,4 @@
-package com.mennomorsink.architecturecomponents;
+package com.mennomorsink.architecturecomponents.data;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
@@ -10,7 +10,7 @@ import android.arch.persistence.room.Update;
  */
 
 @Dao
-interface CounterDao {
+public interface CounterDao {
 
     @Query("SELECT * FROM counter WHERE uid = :uid")
     Counter findByName(int uid);

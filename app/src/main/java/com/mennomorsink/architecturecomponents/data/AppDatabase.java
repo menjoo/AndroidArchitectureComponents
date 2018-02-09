@@ -1,4 +1,4 @@
-package com.mennomorsink.architecturecomponents;
+package com.mennomorsink.architecturecomponents.data;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;

@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mennomorsink.architecturecomponents.data.CounterRepository;
+
 public class MainActivity extends AppCompatActivity {
 
     private CounterRepository counterRepository;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         counterRepository = ((CounterApplication) getApplication()).getCounterRepository();
 
         textLabel = findViewById(R.id.text);
+
         FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override

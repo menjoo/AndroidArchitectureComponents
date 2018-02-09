@@ -3,6 +3,9 @@ package com.mennomorsink.architecturecomponents;
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
+import com.mennomorsink.architecturecomponents.data.AppDatabase;
+import com.mennomorsink.architecturecomponents.data.CounterRepository;
+
 /**
  * Created by mennomorsink on 09/02/2018.
  */
