@@ -1,19 +1,16 @@
 package com.mennomorsink.architecturecomponents.data;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-/**
- * Created by mennomorsink on 09/02/2018.
- */
-
 @Dao
 public interface CounterDao {
 
-    @Query("SELECT * FROM counter WHERE uid = :uid")
-    Counter findByName(int uid);
+    @Query("SELECT * FROM counter WHERE uid = 1")
+    LiveData<Counter> getCounter();
 
     @Insert
     void create(Counter counter);

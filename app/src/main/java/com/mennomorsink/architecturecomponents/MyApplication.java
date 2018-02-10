@@ -6,11 +6,7 @@ import android.arch.persistence.room.Room;
 import com.mennomorsink.architecturecomponents.data.AppDatabase;
 import com.mennomorsink.architecturecomponents.data.CounterRepository;
 
-/**
- * Created by mennomorsink on 09/02/2018.
- */
-
-public class CounterApplication extends Application {
+public class MyApplication extends Application {
 
     private AppDatabase db;
 

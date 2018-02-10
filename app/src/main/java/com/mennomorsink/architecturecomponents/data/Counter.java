@@ -4,14 +4,10 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by mennomorsink on 09/02/2018.
- */
-
 @Entity
 public class Counter {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int uid;
 
     @ColumnInfo(name = "count")

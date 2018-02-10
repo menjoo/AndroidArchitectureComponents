@@ -1,29 +1,27 @@
 package com.mennomorsink.architecturecomponents.data;
 
-/**
- * Created by mennomorsink on 09/02/2018.
- */
+import android.arch.lifecycle.LiveData;
 
 public class CounterRepository {
 
-    private Counter counter;
+    private LiveData<Counter> counter;
     private CounterDao counterDao;
 
     public CounterRepository(CounterDao counterDao) {
         this.counterDao = counterDao;
-        counter = this.counterDao.findByName(0);
-        if (counter == null) {
-            counterDao.create(new Counter());
-            counter = this.counterDao.findByName(0);
-        }
+        counterDao.create(new Counter());
+        counter = counterDao.getCounter();
     }
 
-    public int getCount() {
-        return counter.getCount();
+    public LiveData<Counter> getLiveData() {
+        return counter;
     }
 
     public void increment() {
-        counter.increment();
-        counterDao.update(counter);
+        Counter c = counter.getValue();
+        if (c != null) {
+            c.increment();
+            counterDao.update(c);
+        }
     }
 }

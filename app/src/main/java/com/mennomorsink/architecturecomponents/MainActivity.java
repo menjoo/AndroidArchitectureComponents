@@ -1,14 +1,15 @@
 package com.mennomorsink.architecturecomponents;
 
+import android.arch.lifecycle.Observer;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mennomorsink.architecturecomponents.data.Counter;
 import com.mennomorsink.architecturecomponents.data.CounterRepository;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,10 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        counterRepository = ((CounterApplication) getApplication()).getCounterRepository();
-
         textLabel = findViewById(R.id.text);
-
         FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,33 +41,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        counterRepository = ((MyApplication) getApplication()).getCounterRepository();
+    }
+
     private void onAddTapped() {
         counterRepository.increment();
     }
 
     private void onGetTapped() {
-        textLabel.setText(getString(R.string.counter, counterRepository.getCount()));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        counterRepository.getLiveData().observe(this, new Observer<Counter>() {
+            @Override
+            public void onChanged(@Nullable Counter counter) {
+                if (counter != null) {
+                    textLabel.setText(getString(R.string.counter, counter.getCount()));
+                }
+            }
+        });
     }
 }
