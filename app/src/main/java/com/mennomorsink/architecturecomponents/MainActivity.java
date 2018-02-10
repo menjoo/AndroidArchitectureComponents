@@ -13,6 +13,7 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.mennomorsink.architecturecomponents.data.Counter;
+import com.mennomorsink.architecturecomponents.lifecycle.LifecycleAwareComponent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,9 +33,14 @@ public class MainActivity extends AppCompatActivity {
         textLabel = findViewById(R.id.text);
         chronometer = findViewById(R.id.chronometer);
 
+        setupLifeCycleAwareComponent();
         setupChronometer();
         setupAddButton();
         observeCounter();
+    }
+
+    private void setupLifeCycleAwareComponent() {
+        getLifecycle().addObserver(new LifecycleAwareComponent());
     }
 
     private void setupChronometer() {
