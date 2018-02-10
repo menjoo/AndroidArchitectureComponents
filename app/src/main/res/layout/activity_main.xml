@@ -31,13 +31,4 @@
         android:tint="#ffffff"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabGet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_margin"
-        android:tint="#ffffff"
-        app:srcCompat="@android:drawable/ic_menu_help" />
-
 </android.support.design.widget.CoordinatorLayout>

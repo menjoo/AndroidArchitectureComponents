@@ -13,7 +13,7 @@ public class CounterRepository {
         counter = counterDao.getCounter();
     }
 
-    public LiveData<Counter> getLiveData() {
+    public LiveData<Counter> getCounter() {
         return counter;
     }
 
