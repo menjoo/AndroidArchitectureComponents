@@ -1,8 +1,6 @@
 package com.mennomorsink.architecturecomponents;
 
-import android.arch.lifecycle.Observer;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupChronometer();
         setupAddButton();
-        observeCounter();
+        getCounterValue();
     }
 
     private void setupChronometer() {
@@ -50,14 +48,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void observeCounter() {
-        counterRepository.getCounter().observe(this, new Observer<Counter>() {
-            @Override
-            public void onChanged(@Nullable Counter counter) {
-                if (counter != null) {
-                    textLabel.setText(getString(R.string.counter, counter.getCount()));
-                }
-            }
-        });
+    private void getCounterValue() {
+        Counter counter = counterRepository.getCounter();
+        if (counter != null) {
+            textLabel.setText(getString(R.string.counter, counter.getCount()));
+        }
     }
 }
